@@ -1,28 +1,33 @@
-# Linked List
-
-# class Node
+# Node class
 
 class Node:
-  def __init__(self, value, next=None):
+  def __init__(self, value, next = None):
     self.value = value
     self.next = next
 
-# assigning data
+#Linked List
 
-node1 = Node(11)
-node2 = Node(22)
-node3 = Node(33)
+class LinkedList:
+  def __init__(self):
+    self.head = None
+  
+  def insert(self, value):
+    new_node = Node(value)
+    new_node.next = self.head
+    self.head = new_node
 
-# assigning pointers
+  def print_list(self):
+    current = self.head
+    while current:
+      print(current.value)
+      current = current.next
 
-node1.next = node2
-node2.next = node3
+ll = LinkedList()
 
-# traversal nodes
+ll.insert(5)
+ll.insert(10)
+ll.insert(21)
 
-curr = node1
 
-while curr:
-  print(curr.value)
-  curr = curr.next
-print("None")
+
+ll.print_list()
