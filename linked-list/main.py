@@ -1,98 +1,53 @@
 # Node class
 
 class Node:
-  def __init__(self, value, next = None):
+  def __init__(self, value, next = None ):
     self.value = value
     self.next = next
 
-# Linked list
+# Linked List
 
-class LinkedList:
+class Linked_list:
   def __init__(self, head = None):
     self.head = head
 
   def insert(self, value):
-    node_head = Node(value)
-    node_head.next = self.head
-    self.head = node_head
+    new_node = Node(value)
+    new_node.next = self.head
+    self.head = new_node
 
   def remove(self, value):
-    current = self.head
+    
+    # values are 5,4,2 and lets say we want to remove value 4
+    # 1. 4 node pointer points to the 2 node
+    # 2. we need to make 5 pointer points to the 2 node instead of the 4 node or kind of make it skip
 
-    if current.value is None:
+    curr = self.head
+
+    if curr.value is None:
       return
     
-    while current.next:
-      if current.next.value == value:
-        current.next = current.next.next
-        return
-      current = current.next
-  
-  def swap_nodes(self, val1, val2):
-
-    # if both values are same there is nothing to worry about
-
-    if val1 == val2:
+    if curr.value == value:
+      self.head = curr.next
       return
+      
     
-    # find val1
-
-    prev1 = None
-    curr1 = self.head
-
-    while curr1:
-      if curr1.value == val1:
-        prev1 = curr1
-        curr1 = curr1.next
-    
-    # find val2
-
-    prev2 = None
-    curr2 = self.head
-
-    while curr2:
-      if curr2.value == val2:
-        prev2 = curr2
-        curr2 = curr2.next
-    
-    if curr1 is None or curr2 is None:
-      print('One or two values are missing')
-      return
-
-    # change the previous nodes
-
-    if prev1 is None:
-      self.head = curr2
-    else:
-      prev1.next = curr2
-
-    if prev2 is None:
-      self.head = curr1
-      prev2.next = curr1
-
-    # swap next pointers
-
-    temp = curr1.next
-    curr1.next = curr2.next
-    curr2.next = temp
-
+    while curr.next:
+      if curr.next.value == value:
+        curr.next = curr.next.next
+        return 
+      curr = curr.next
 
   def print(self):
-    current = self.head
+    curr = self.head
+    while curr:
+      print(curr.value)
+      curr = curr.next
 
-    while current:
-      print(current.value)
-      current = current.next
+ll = Linked_list()
 
-
-
-ll = LinkedList()
-
-ll.insert(23)
-ll.insert(65)
-ll.insert(245)
-ll.insert(52)
-
-ll.swap_nodes(65, 34)
-
+ll.insert(2)
+ll.insert(5)
+ll.insert(8)
+ll.remove(8)
 ll.print()
